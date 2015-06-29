@@ -39,4 +39,25 @@
 ;; company should be case sensitive
 (setq company-dabbrev-downcase nil)
 
+(setq company-clang-arguments
+      '("-IC:/Program Files (x86)/Microsoft Visual Studio 10.0/VC/include"
+        "-IC:/Program Files (x86)/Microsoft Visual Studio 10.0/VC/atlmfc/include"
+        "-IC:/Program Files (x86)/Microsoft SDKs/Windows/v7.0A/Include"
+        ;; "-ID:/LikeUnix/MinGW/include"
+        ;; "-ID:/LikeUnix/MinGW/mingw32/include"
+        ;; "-ID:/LikeUnix/MinGW/lib/gcc/mingw32/4.7.0/include"
+        ;; "-ID:/LikeUnix/MinGW/lib/gcc/mingw32/4.7.0/include/c++"
+        ;; "-ID:/LikeUnix/MinGW/lib/gcc/mingw32/4.7.0/include/c++/mingw32"
+        ))
+
+(eval-after-load 'company
+  '(add-to-list 'company-backends 'company-irony))
+
+
+;; (optional) adds CC special commands to `company-begin-commands' in order to
+;; trigger completion at interesting places, such as after scope operator
+;;     std::|
+(add-hook 'irony-mode-hook 'company-irony-setup-begin-commands)
+(setq company-auto-complete t)
+
 (provide 'init-company)
