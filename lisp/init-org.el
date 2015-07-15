@@ -129,7 +129,7 @@
         "Make lines wrap at window edge and on word boundary,
         in current buffer."
         (interactive)
-        (setq truncate-lines nil)
+        ;; (setq truncate-lines nil)
         (setq word-wrap t)
         )
       (add-hook 'org-mode-hook '(lambda ()
@@ -207,7 +207,7 @@
         ("l" "LifeNote" entry (file+headline "E:/Mine/Documents/notes/src/notes/liftnotes.org" "LiftNotes")
          "* %U %?\n\n  %i" :prepend t :empty-lines 1)
 
-        ("s" "StudyNot" entry (file+headline "E:/Mine/Documents/notes/src/notes/studynotes.org" "StudyNotes")
+        ("s" "StudyNote" entry (file+headline "E:/Mine/Documents/notes/src/notes/studynotes.org" "StudyNotes")
          "* %U %?\n\n  %i" :prepend t :empty-lines 1)
         ))
 
@@ -219,6 +219,7 @@
 
 (require 'ox-impress-js)
 (require 'ox-html5presentation)
+(require 'org-dashboard)
 
 ;; active Babel languages
 (org-babel-do-load-languages
@@ -332,45 +333,43 @@
                ("\\paragraph{%s}" . "\\paragraph*{%s}")
                ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
-;; Include the latex-exporter
-(require 'ox-latex)
-;; Add minted to the defaults packages to include when exporting.
-(add-to-list 'org-latex-packages-alist '("" "minted"))
-;; Tell the latex export to use the minted package for source
-;; code coloration.
-(setq org-latex-listings 'minted)
+;; (setq org-latex-listings 'minted)
+;; (add-to-list 'org-latex-packages-alist '("" "minted"))
+(setq org-latex-listings t)
+(add-to-list 'org-latex-packages-alist '("" "listings"))
+(add-to-list 'org-latex-packages-alist '("" "color"))
 
 ;; 使用Listings宏包格式化源代码(只是把代码框用listing环境框起来，还需要额外的设置)
-;;(setq org-latex-listings t)
+(setq org-latex-listings t)
 
 ;; Options for \lset command（reference to listing Manual)
-;; (setq org-latex-listings-options
-;;       '(
-;;         ("basicstyle" "\\color{foreground}\\small\\mono")           ; 源代码字体样式
-;;         ("keywordstyle" "\\color{function}\\bfseries\\small\\mono") ; 关键词字体样式
-;;         ("identifierstyle" "\\color{doc}\\small\\mono")
-;;         ("commentstyle" "\\color{comment}\\small\\itshape")         ; 批注样式
-;;         ("stringstyle" "\\color{string}\\small")                    ; 字符串样式
-;;         ("showstringspaces" "false")                                ; 字符串空格显示
-;;         ("numbers" "left")                                          ; 行号显示
-;;         ("numberstyle" "\\color{preprocess}")                       ; 行号样式
-;;         ("stepnumber" "1")                                          ; 行号递增
-;;         ("backgroundcolor" "\\color{background}")                   ; 代码框背景色
-;;         ("tabsize" "4")                                             ; TAB等效空格数
-;;         ("captionpos" "t")                                          ; 标题位置 top or buttom(t|b)
-;;         ("breaklines" "true")                                       ; 自动断行
-;;         ("breakatwhitespace" "true")                                ; 只在空格分行
-;;         ("showspaces" "false")                                      ; 显示空格
-;;         ("columns" "flexible")                                      ; 列样式
-;;         ("frame" "single")                                          ; 代码框：阴影盒
-;;         ("frameround" "tttt")                                       ; 代码框： 圆角
-;;         ("framesep" "0pt")
-;;         ("framerule" "8pt")
-;;         ("rulecolor" "\\color{background}")
-;;         ("fillcolor" "\\color{white}")
-;;         ("rulesepcolor" "\\color{comdil}")
-;;         ("framexleftmargin" "10mm")
-;;         ))
+(setq org-latex-listings-options
+      '(
+        ("basicstyle" "\\color{foreground}")           ; 源代码字体样式
+        ("keywordstyle" "\\color{function}") ; 关键词字体样式
+        ("identifierstyle" "\\color{doc}")
+        ("commentstyle" "\\color{comment}\\small\\itshape")         ; 批注样式
+        ("stringstyle" "\\color{string}\\small")                    ; 字符串样式
+        ("showstringspaces" "false")                                ; 字符串空格显示
+        ("numbers" "left")                                          ; 行号显示
+        ("numberstyle" "\\color{preprocess}")                       ; 行号样式
+        ("stepnumber" "1")                                          ; 行号递增
+        ("backgroundcolor" "\\color{background}")                   ; 代码框背景色
+        ("tabsize" "4")                                             ; TAB等效空格数
+        ("captionpos" "t")                                          ; 标题位置 top or buttom(t|b)
+        ("breaklines" "true")                                       ; 自动断行
+        ("breakatwhitespace" "true")                                ; 只在空格分行
+        ("showspaces" "false")                                      ; 显示空格
+        ("columns" "flexible")                                      ; 列样式
+        ("frame" "single")                                          ; 代码框：阴影盒
+        ("frameround" "tttt")                                       ; 代码框： 圆角
+        ("framesep" "0pt")
+        ("framerule" "8pt")
+        ("rulecolor" "\\color{background}")
+        ("fillcolor" "\\color{white}")
+        ("rulesepcolor" "\\color{comdil}")
+        ("framexleftmargin" "10mm")
+        ))
 
 ;; 导出Beamer的设置
 ;; allow for export=>beamer by placing #+LaTeX_CLASS: beamer in org files
