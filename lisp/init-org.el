@@ -173,7 +173,7 @@
          :publishing-directory "E:/Mine/Documents/notes/publish"
          :base-extension "org"
          :recursive t
-         :publishing-function org-publish-org-to-html
+         :publishing-function org-html-export-to-html
          :auto-index t
          :index-filename "index.org"
          :index-title "index"
@@ -181,12 +181,12 @@
          :section-numbers t
          :style "<link rel=\"stylesheet\" href=\"./wheer.css\" type=\"text/css\"/>")
         ("note-static"
-         :base-directory "~/Documents/notes/org/src"
-         :publishing-directory "~/Documents/notes/publish"
+         :base-directory "E:/Mine/Documents/notes/org/src"
+         :publishing-directory "E:/Mine/Documents/notes/publish"
          :recursive t
          :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|swf\\|zip\\|gz\\|txt\\|el"
          :publishing-function org-publish-attachment)
-        ("note" 
+        ("note"
          :components ("note-org" "note-static")
          :author "jain_y@126.com"
          )))
@@ -345,9 +345,9 @@
 ;; Options for \lset command（reference to listing Manual)
 (setq org-latex-listings-options
       '(
-        ("basicstyle" "\\color{foreground}")           ; 源代码字体样式
-        ("keywordstyle" "\\color{function}") ; 关键词字体样式
-        ("identifierstyle" "\\color{doc}")
+        ("basicstyle" "\\color{foreground}\\small\\UbuntuMono")           ; 源代码字体样式
+        ("keywordstyle" "\\color{function}\\bfseries\\small\\UbuntuMono") ; 关键词字体样式
+        ("identifierstyle" "\\color{doc}\\small\\UbuntuMono")
         ("commentstyle" "\\color{comment}\\small\\itshape")         ; 批注样式
         ("stringstyle" "\\color{string}\\small")                    ; 字符串样式
         ("showstringspaces" "false")                                ; 字符串空格显示
