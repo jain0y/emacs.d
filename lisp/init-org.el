@@ -30,7 +30,8 @@
 (setq org-latex-to-pdf-process ;; org v7
       '("xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
         "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
-        "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+        "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "rm -fr %b.out %b.log %b.tex auto"))
 (setq org-latex-pdf-process org-latex-to-pdf-process) ;; org v8
 ;; }}
 
@@ -266,7 +267,7 @@
   (setq org-export-latex-classes nil))
 
 (add-to-list 'org-latex-classes
-             '("cn-article"
+             '("ctexart"
                "\\documentclass[10pt,a4paper]{article}
                 \\usepackage{graphicx}
                 \\usepackage{xcolor}
@@ -296,9 +297,9 @@
                 menucolor=blue]{hyperref}
                 \\usepackage{fontspec,xunicode,xltxtra}
                 \\setmainfont[BoldFont=SimHei]{SimSun}
-                \\setsansfont[BoldFont=SimHei]{AR PL UKai CN}
-                \\setmonofont{Bitstream Vera Sans Mono}
-                \\newcommand\\fontnamemono{AR PL UKai CN}%等宽字体
+                \\setsansfont[BoldFont=SimHei]{SimKai}
+                \\setmonofont{Courier}
+                \\newcommand\\fontnamemono{SimKai}%等宽字体
                 \\newfontinstance\\MONO{\\fontnamemono}
                 \\newcommand{\\mono}[1]{{\\MONO #1}}
                 \\setCJKmainfont[Scale=0.9]{SimHei}%中文字体
@@ -332,6 +333,7 @@
                ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
                ("\\paragraph{%s}" . "\\paragraph*{%s}")
                ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+(setq org-latex-default-class "ctexart")
 
 ;; (setq org-latex-listings 'minted)
 ;; (add-to-list 'org-latex-packages-alist '("" "minted"))
